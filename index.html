@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BaghChal - Tigers and Goats</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>BaghChal (Tigers and Goats)</h1>
+    <p class="subtitle">Goats try to trap the tigers; tigers try to capture goats.</p>
+  </header>
+  <main>
+    <section id="board-container">
+      <div id="mobileStatusBar" class="mobile-status" aria-hidden="true">
+        <span><strong>Turn:</strong> <span id="turnDisplayMobile"></span></span>
+        <span><strong>Goats to place:</strong> <span id="goatsToPlaceMobile"></span></span>
+        <span><strong>Goats captured:</strong> <span id="goatsCapturedMobile"></span></span>
+      </div>
+      <svg id="board" viewBox="0 0 500 500" role="img" aria-label="BaghChal board"></svg>
+      <div id="captureOverlay" class="capture-overlay" aria-hidden="true">
+        <div class="capture-banner">GOAT KILLED</div>
+      </div>
+      <div id="winnerOverlay" class="winner-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="winner-modal">
+          <div class="winner-image-wrapper">
+            <img id="winnerImage" alt="Winner piece" />
+          </div>
+            <h2 id="winnerTitle"></h2>
+            <p id="winnerReason" class="winner-reason"></p>
+            <div class="winner-actions">
+              <button id="playAgainBtn">Okay!</button>
+            </div>
+        </div>
+      </div>
+      <div id="ui-panel">
+        <fieldset class="player-config" id="modeConfig">
+          <legend>Mode</legend>
+          <label><input type="radio" name="modeSelect" value="1p" checked /> 1 Player (vs AI)</label>
+          <label><input type="radio" name="modeSelect" value="2p" /> Local 2 Players</label>
+          <label><input type="radio" name="modeSelect" value="online" /> Online</label>
+        </fieldset>
+        <fieldset class="player-config" id="singlePlayerOptions">
+          <legend>Single Player</legend>
+          <label>Play As:
+            <select id="humanSideSelect">
+              <option value="goat" selected>Goats</option>
+              <option value="tiger">Tigers</option>
+            </select>
+          </label>
+          <p style="margin:0;font-size:0.65rem;color:#888;">Opponent: Smart AI</p>
+        </fieldset>
+        <fieldset class="player-config" id="onlineOptions" style="display:none;">
+          <legend>Online</legend>
+          <label>Preferred Side:
+            <select id="onlineSideSelect">
+              <option value="goat" selected>Goats</option>
+              <option value="tiger">Tigers</option>
+              <option value="any">Any</option>
+            </select>
+          </label>
+          <label>Room Code:
+            <input type="text" id="roomCodeInput" placeholder="(join existing)" maxlength="8" style="flex:1; background:#222; color:#eee; border:1px solid #555; padding:0.3rem 0.45rem; border-radius:5px; font-size:0.7rem;" />
+          </label>
+          <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+            <button id="createRoomBtn" type="button">Create</button>
+            <button id="joinRoomBtn" type="button">Join</button>
+            <button id="leaveRoomBtn" type="button" style="display:none;">Leave</button>
+          </div>
+          <div id="onlineStatus" style="font-size:0.7rem; min-height:1.1rem; color:#9ae6ff;"></div>
+          <div id="shareLinkWrapper" style="display:none; font-size:0.65rem; word-break:break-all; background:#181818; padding:0.4rem 0.5rem; border:1px solid #333; border-radius:6px;">
+            Share: <span id="shareLink"></span>
+          </div>
+        </fieldset>
+        <div class="status-line"><strong>Turn:</strong> <span id="turnDisplay"></span></div>
+        <div class="status-line"><strong>Goats to place:</strong> <span id="goatsToPlace"></span></div>
+        <div class="status-line"><strong>Goats captured:</strong> <span id="goatsCaptured"></span></div>
+        <div class="buttons">
+          <button id="restartBtn">Restart</button>
+        </div>
+        <div id="message" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>Proudly Developed By Santosh</p>
+  </footer>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
